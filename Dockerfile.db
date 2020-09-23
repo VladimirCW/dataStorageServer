@@ -1,0 +1,5 @@
+FROM mongo
+COPY waitdb.sh /data/
+#COPY dbDump /data/
+RUN chmod 777 /data/waitdb.sh
+CMD /data/waitdb.sh

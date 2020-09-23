@@ -1,0 +1,30 @@
+version: "3"
+volumes:
+  mongodbdata:
+    external: true
+services:
+  mongo:
+    container_name: mongo
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - "27017:27017"
+    volumes: 
+      - type: volume
+        source: mongodbdata
+        target: /data/db
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    restart: always
+    volumes:
+      -  .\:/source
+    working_dir: /source  
+    ports:
+      - "8000:8000"
+    command: npm run app
+    links:
+      - mongo

@@ -1,0 +1,19 @@
+html
+    include header
+    body
+        div.container
+            h1 Update and read samples
+        div.container
+            h3 PATCH sample
+        form
+            div.form-group.well    
+                label(for="extraSampleIdentifier") New Identifier
+                input#extraSampleIdentifier.form-control
+                label(for="patchTestDataSetId") For Test data set
+                input#patchTestDataSetId.form-control(placeholder="hipr-1-1")
+                br
+                button#patchTestDataSetSubmit.btn.btn-info.btn-block(type="button")
+                br
+                div#getPatchOutput.well
+        h3 USE sample
+        form        

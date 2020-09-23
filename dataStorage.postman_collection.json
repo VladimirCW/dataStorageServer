@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "f856fed9-f570-4a45-9b2b-12343da1601b",
+		"name": "dataStorage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46502c7d-fcbc-42cc-9fda-a493eaabe3ee",
+						"exec": [
+							"pm.environment.set(\"samplesLambdaToken\", pm.response.json().token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"vova-aqa\",\r\n    \"password\": \"a123456789Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/qa/token",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put sample",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"type": "text",
+						"value": "bearer {{samplesLambdaToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sampleName\": [\"US1-dev\", \"US2-dev\"],\r\n    \"description\": \"clinical.product1.6Slides\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/dev/samples/hipr-1-1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dev",
+						"samples",
+						"hipr-1-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete sample",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer {{samplesLambdaToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"asdasdasdas\"",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/qa/samples/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"samples",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "use sample by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer {{samplesLambdaToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/qa/samples/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"samples",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get  all samples",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"type": "text",
+						"value": "bearer {{samplesLambdaToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/qa/samples/hipr-1-1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"samples",
+						"hipr-1-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch sample",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "bearer {{samplesLambdaToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "US00003",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/qa/samples/hipr-1-1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"samples",
+						"hipr-1-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "use sample by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"type": "text",
+						"value": "bearer {{samplesLambdaToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/qa/samples/hipr-1-1/use",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"qa",
+						"samples",
+						"hipr-1-1",
+						"use"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "renderHtml",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/dev",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"dev"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
